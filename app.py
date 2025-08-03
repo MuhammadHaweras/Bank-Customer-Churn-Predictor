@@ -23,7 +23,7 @@ with st.form("customer_form"):
     st.markdown("## 📝 Enter Customer Details")
     col1, col2 = st.columns(2)
     with col1:
-        credit_score = st.number_input("💳 Credit Score", min_value=0, max_value=1000, help="Customer's credit score")
+        credit_score = st.number_input("💳 Credit Score", min_value=0, help="Customer's credit score")
         age = st.number_input("📅 Age", min_value=16, max_value=100, value=18)
         tenure = st.number_input("⏳ Tenure (years)", min_value=0, max_value=80)
         balance = st.number_input("💰 Balance", min_value=0.0, value=50000.0)
@@ -43,7 +43,6 @@ with st.form("customer_form"):
     submitted = st.form_submit_button("🔮 Predict Churn", use_container_width=True)
 
     if submitted:
-        # Encode categorical variables as needed
         gender_encoded = 1 if gender == 'Male' else 0
         geo_map = {'France': 0, 'Germany': 1, 'Spain': 2}
         geography_encoded = geo_map[geography]
@@ -82,3 +81,4 @@ with st.form("customer_form"):
             st.progress(prob[0])
             st.metric(label="Chance of the Customer will NOT Churn", value=f"{prob[0]*100:.2f}%")
             st.metric(label="Chance of the Customer will Churn", value=f"{prob[1]*100:.2f}%")
+
